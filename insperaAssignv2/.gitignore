@@ -1,0 +1,35 @@
+### .gitignore
+
+# R specific
+.Rhistory
+.RData
+.Rproj.user
+.Ruserdata
+.Rproj
+
+# Project specific
+.DS_Store
+*.tar.gz
+*.Rbuildignore
+*.Rcheck/
+
+# Environment and configuration files
+.env
+.envrc
+*.env*
+
+# Log files
+*.log
+insperaAssign.log
+
+# Temporary files
+*.tmp
+*.temp
+*~
+
+# Other
+.vscode/
+.Rhistory
+node_modules/
+coverage/
+.idea/

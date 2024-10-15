@@ -1,0 +1,28 @@
+Package: insperaAssignv2
+Title: Manage and Assign Contributors to Inspera Tests
+Version: 0.1.0
+Authors@R: 
+    person("Your", "Name", email = "your.email@example.com", role = c("aut", "cre"))
+Description: This package provides functionality to interact with the Inspera API,
+    including creating, updating, and retrieving test metadata, as well as assigning contributors to tests.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
+Imports:
+    httr2,
+    jsonlite,
+    readr,
+    dplyr,
+    purrr,
+    magrittr,
+    tidyr,
+    futile.logger,
+    dotenv,
+    lubridate
+Suggests: 
+    knitr,
+    rmarkdown,
+    testthat (>= 3.0.0)
+VignetteBuilder: knitr
