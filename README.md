@@ -43,19 +43,21 @@ Test IDs CSV
 The Test IDs CSV should have a column named "AssessmentRunId" containing the test IDs.
 
 Example:
+```csv
 AssessmentRunId
 12345
 67890
-
+```
 
 # Contributors CSV
 The Contributors CSV should have columns named "contributor" and "committee".
 
 Example:
+```csv
 contributor,committee
 john.doe@example.com,Committee A
 jane.smith@example.com,Committee B
-
+```
 ## Environment Variables
 The package uses the following environment variables:
 
