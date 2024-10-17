@@ -1,7 +1,7 @@
-# Script to assign contributors to tests using insperaAssign package
+# Script to assign contributors to tests using InspeRaAssign package
 
 # Load the package
-library(insperaAssign)
+library(InspeRaAssign)
 
 # Function to set up the environment
 setup_environment <- function() {

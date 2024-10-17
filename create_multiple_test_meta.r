@@ -1,5 +1,5 @@
 library(testthat)
-library(insperaAssign)
+library(InspeRaAssign)
 library(mockery)
 
 # Create a temporary directory for test files
@@ -38,7 +38,7 @@ test_that("assign_contributors_from_csv works correctly", {
   with_mock(
     "httr2::req_perform" = mock_req_perform,
     {
-      result <- insperaAssign::assign_contributors_from_csv()
+      result <- InspeRaAssign::assign_contributors_from_csv()
       
       # Check that the function returns the expected structure
       expect_s3_class(result, "data.frame")

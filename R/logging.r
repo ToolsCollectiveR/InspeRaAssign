@@ -7,7 +7,7 @@
 configure_logging <- function() {
   tryCatch({
     # Use tempdir() for a guaranteed writable location
-    log_file <- file.path(tempdir(), "insperaAssign.log")
+    log_file <- file.path(tempdir(), "InspeRaAssign.log")
     
     # Configure the logger to write to both the console and the log file
     futile.logger::flog.appender(futile.logger::appender.tee(log_file))
@@ -37,7 +37,7 @@ configure_logging <- function() {
     futile.logger::flog.info("Starting .onLoad function")
     
     futile.logger::flog.info("Attempting to load .env file")
-    env_file <- system.file(".env", package = "insperaAssign")
+    env_file <- system.file(".env", package = "InspeRaAssign")
     if (file.exists(env_file)) {
       dotenv::load_dot_env(env_file)
       futile.logger::flog.info(".env file loaded successfully")
@@ -45,7 +45,7 @@ configure_logging <- function() {
       futile.logger::flog.warn(".env file does not exist. Proceeding without loading environment variables.")
     }
     
-    futile.logger::flog.info("Finished .onLoad function: insperaAssign package loaded successfully")
+    futile.logger::flog.info("Finished .onLoad function: InspeRaAssign package loaded successfully")
   }, error = function(e) {
     warning("Error in .onLoad: ", conditionMessage(e))
   })
