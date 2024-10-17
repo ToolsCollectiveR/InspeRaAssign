@@ -1,6 +1,6 @@
 # test_creation_script.R
 
-library(insperaAssignv2)
+library(insperaAssign)
 library(dotenv)
 library(readr)
 

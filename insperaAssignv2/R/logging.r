@@ -37,7 +37,7 @@ configure_logging <- function() {
     futile.logger::flog.info("Starting .onLoad function")
     
     futile.logger::flog.info("Attempting to load .env file")
-    env_file <- system.file(".env", package = "insperaAssignv2")
+    env_file <- system.file(".env", package = "insperaAssign")
     if (file.exists(env_file)) {
       dotenv::load_dot_env(env_file)
       futile.logger::flog.info(".env file loaded successfully")
@@ -45,7 +45,7 @@ configure_logging <- function() {
       futile.logger::flog.warn(".env file does not exist. Proceeding without loading environment variables.")
     }
     
-    futile.logger::flog.info("Finished .onLoad function: insperaAssignv2 package loaded successfully")
+    futile.logger::flog.info("Finished .onLoad function: insperaAssign package loaded successfully")
   }, error = function(e) {
     warning("Error in .onLoad: ", conditionMessage(e))
   })
