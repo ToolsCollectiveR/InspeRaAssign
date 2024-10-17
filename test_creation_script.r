@@ -16,7 +16,7 @@ if (template_id == "") {
 }
 
 # Test parameters
-external_test_id <- "test_002"  # Replace with a unique external test ID
+external_test_id <- "test_004"  # Replace with a unique external test ID
 title <- "Test Exam 001"
 start_time <- "2023-06-01T09:00:00Z"
 end_time <- "2023-06-01T11:00:00Z"

@@ -1,0 +1,158 @@
+---
+title: "InspeRaAssign Package Usage Guide"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# InspeRaAssign Package
+The InspeRaAssign package is designed to interact with the Inspera API for managing tests and contributors. This guide will walk you through the main functions and their usage.
+
+# Installation
+To install the InspeRaAssign package, you can use the following command:
+
+```r
+# Assuming the package is available on GitHub
+devtools::install_github("your_github_username/InspeRaAssign")
+```
+
+# Loading the Package
+After installation, load the package:
+```r
+library(InspeRaAssign)
+```
+# Setting Up Environment Variables
+The package uses environment variables for sensitive information. Create a .env file in your project root with the following variables:
+```ini
+INSPERA_API_KEY=your_api_key_here
+INSPERA_ACCESS_TOKEN=your_access_token_here
+TEST_ID_CSV_PATH=path/to/your/test_ids.csv
+CONTRIBUTORS_CSV_PATH=path/to/your/contributors.csv
+NUM_TESTS=5  # Number of tests to create when using create_multiple_tests
+```
+# Main Functions
+1. Authentication
+get_access_token()
+This function retrieves an access token from the Inspera API.
+```r
+token <- get_access_token()
+```
+# 2. Test Creation
+create_new_test()
+Creates a new test in the Inspera system.
+```r
+new_test <- create_new_test(
+  template_id = "your_template_id",
+  external_test_id = "unique_external_id",
+  title = "Test Title",
+  start_time = "2023-05-01T09:00:00Z",
+  end_time = "2023-05-01T11:00:00Z",
+  duration = 120
+)
+```
+create_multiple_tests()
+Creates multiple tests based on the NUM_TESTS environment variable.
+```r
+multiple_tests <- create_multiple_tests(
+  template_id = "your_template_id",
+  title_prefix = "Sample Test",
+  start_time = "2023-05-01T09:00:00Z",
+  duration = 120,
+  gap_between_tests = 30
+)
+```
+# 3. Contributor Assignment
+assign_contributors()
+Assigns contributors to a specific test.
+```r
+result <- assign_contributors(
+  test_id = "your_test_id",
+  contributors = list("contributor1@example.com", "contributor2@example.com"),
+  committees = list("Committee A", "Committee B")
+)
+```
+
+assign_contributors_bulk()
+Assigns contributors to multiple tests.
+
+```r
+results <- assign_contributors_bulk(
+  test_ids = c("test_id_1", "test_id_2", "test_id_3"),
+  contributors = list("contributor1@example.com", "contributor2@example.com")
+)
+```
+
+assign_contributors_from_csv()
+Assigns contributors to tests based on CSV files.
+
+```r
+results <- assign_contributors_from_csv()
+```
+# 4. Utility Functions
+save_results_csv()
+Saves results to a CSV file.
+
+```r
+save_results_csv(results, "path/to/output.csv")
+```
+
+get_env_var()
+Retrieves an environment variable with an optional default value.
+```r
+api_key <- get_env_var("INSPERA_API_KEY", default_value = "")
+```
+
+alidate_env_var()
+Validates if a required environment variable is set.
+```r
+validate_env_var("INSPERA_API_KEY")
+```
+## Logging
+The package uses the futile.logger package for logging. Logs are written to both the console and a log file located in the system's temporary directory.
+
+# Error Handling
+Most functions in the package include error handling and will log errors using futile.logger. Always check the log output for any issues during execution.
+
+# Example Workflow
+Here's an example of a typical workflow using the InspeRaAssign package:
+```r
+library(InspeRaAssign)
+
+# Create a new test
+new_test <- create_new_test(
+  template_id = "template_123",
+  external_test_id = "ext_test_001",
+  title = "Sample Test",
+  start_time = "2023-05-01T09:00:00Z",
+  end_time = "2023-05-01T11:00:00Z",
+  duration = 120
+)
+
+# Assign contributors to the new test
+if (!is.null(new_test)) {
+  result <- assign_contributors(
+    test_id = new_test$assessmentRunId,
+    contributors = list("john@example.com", "jane@example.com"),
+    committees = list("Committee A", "Committee B")
+  )
+  
+  print(result)
+}
+
+# Create multiple tests
+multiple_tests <- create_multiple_tests(
+  template_id = "template_123",
+  title_prefix = "Batch Test",
+  start_time = "2023-05-02T09:00:00Z",
+  duration = 120,
+  gap_between_tests = 30
+)
+
+# Assign contributors from CSV
+csv_results <- assign_contributors_from_csv()
+
+# Save results
+save_results_csv(csv_results, "assignment_results.csv")
+```
