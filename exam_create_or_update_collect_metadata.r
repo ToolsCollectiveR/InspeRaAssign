@@ -1,5 +1,5 @@
 # multiple_test_creation_script.R
-
+#WARNING: this test script only makes tests if the test id numbre is new, if not it gets updated. .env num-tests var controls this
 library(InspeRaAssign)
 library(dotenv)
 library(readr)
